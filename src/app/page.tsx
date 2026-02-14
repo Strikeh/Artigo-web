@@ -1,4 +1,5 @@
 ﻿import { Hero } from "@/components/sections/Hero";
+import { TwoEngines } from "@/components/sections/TwoEngines";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { ProblemSolution } from "@/components/sections/ProblemSolution";
 import { HowItWorks } from "@/components/sections/HowItWorks";
@@ -15,6 +16,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <TwoEngines />
       <SocialProof />
       <ProblemSolution />
       <HowItWorks />

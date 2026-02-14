@@ -1,23 +1,58 @@
 ﻿"use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Play } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const galleryItems = [
-  { label: "Home Screen", placeholder: "gallery-1.png" },
-  { label: "Ratio Screen", placeholder: "gallery-2.png" },
-  { label: "Grid Screen", placeholder: "gallery-3.png" },
-  { label: "Processing", placeholder: "gallery-4.png" },
-  { label: "Results", placeholder: "gallery-5.png" },
-  { label: "Settings", placeholder: "gallery-6.png" },
-  { label: "Output Folder", placeholder: "gallery-7.png" },
+  {
+    label: "Home Screen",
+    src: "/images/home.png",
+    alt: "Artigo Dashboard Overview",
+  },
+  {
+    label: "Ratio Screen",
+    src: "/images/ratio-management.png",
+    alt: "Ratio Configuration screen",
+  },
+  {
+    label: "Grid Screen",
+    src: "/images/grid-composition.png",
+    alt: "Grid Layout editor",
+  },
+  {
+    label: "Processing",
+    src: "/images/processing.png",
+    alt: "Batch Processing status",
+  },
+  {
+    label: "Results",
+    src: "/images/results.png",
+    alt: "Exported Results folder",
+  },
+  {
+    label: "Settings",
+    src: "/images/global-settings.png",
+    alt: "Application Settings",
+  },
 ];
 
 export function ProductShowcase() {
+  const [selectedImage, setSelectedImage] = useState<
+    (typeof galleryItems)[0] | null
+  >(null);
+
   return (
-    <section id="showcase" className="section-padding overflow-hidden">
+    <section id="showcase" className="section-padding overflow-hidden relative">
       <div className="max-container">
-        <SectionHeading accent="action">See it in action.</SectionHeading>
+        <SectionHeading
+          accent="action"
+          subtitle="Watch how Artigo transforms your production workflow."
+        >
+          See it in <span className="gradient-text">action.</span>
+        </SectionHeading>
 
         {/* Video Placeholder */}
         <motion.div
@@ -25,50 +60,55 @@ export function ProductShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
-          className="mt-16"
+          className="mt-12 mb-16"
         >
-          <div className="glass-strong rounded-2xl p-3 shadow-xl max-w-4xl mx-auto">
-            <div className="rounded-xl overflow-hidden aspect-video bg-gradient-to-br from-indigo-50 to-blue-50 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-20 h-20 rounded-full bg-white/80 flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-accent-indigo ml-1"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-                <p className="text-text-secondary text-sm">demo-video.mp4</p>
-                <p className="text-text-tertiary text-xs mt-1">
-                  Full walkthrough — 1-2 min
-                </p>
+          <div className="glass-strong rounded-2xl p-3 shadow-xl max-w-4xl mx-auto group cursor-pointer relative overflow-hidden">
+            {/* Fake Video UI for now */}
+            <div className="rounded-xl overflow-hidden aspect-video bg-gray-900 flex items-center justify-center relative">
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
+
+              <div className="w-20 h-20 rounded-full bg-white/90 group-hover:scale-110 transition-transform flex items-center justify-center relative z-10 shadow-lg backdrop-blur-sm">
+                <Play className="w-8 h-8 text-accent ml-1 fill-current" />
+              </div>
+
+              <div className="absolute bottom-6 left-6 text-white text-left z-10">
+                <p className="font-semibold text-lg">Platform Walkthrough</p>
+                <p className="text-white/70 text-sm">2:14 min</p>
               </div>
             </div>
           </div>
         </motion.div>
 
         {/* Screenshot Gallery */}
-        <div className="mt-12 relative">
-          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide px-4 -mx-4">
+        <div className="relative">
+          <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide px-4 py-4 -mx-4 items-stretch">
             {galleryItems.map((item, i) => (
               <motion.div
-                key={item.placeholder}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={item.label}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.4 }}
-                className="flex-shrink-0 snap-center"
+                layoutId={`card-${item.label}`}
+                onClick={() => setSelectedImage(item)}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="flex-shrink-0 snap-center cursor-pointer group"
               >
-                <div className="glass-strong rounded-xl p-2 shadow-sm w-64">
-                  <div className="rounded-lg overflow-hidden aspect-[16/10] bg-gradient-to-br from-slate-50 to-indigo-50/30 flex items-center justify-center">
-                    <div className="text-center">
-                      <p className="text-xs text-text-tertiary">
-                        {item.placeholder}
-                      </p>
+                <div className="glass-strong hover:bg-white/80 transition-colors rounded-xl p-3 shadow-sm hover:shadow-lg w-72 md:w-80 border border-white/40">
+                  <div className="rounded-lg overflow-hidden aspect-[16/10] bg-gray-100 relative">
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 320px"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <span className="bg-black/50 text-white text-xs px-3 py-1 rounded-full backdrop-blur-md">
+                        View
+                      </span>
                     </div>
                   </div>
-                  <p className="text-xs text-text-secondary text-center mt-2 font-medium">
+                  <p className="text-sm text-text-secondary text-center mt-3 font-medium">
                     {item.label}
                   </p>
                 </div>
@@ -77,6 +117,52 @@ export function ProductShowcase() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8"
+          >
+            <motion.div
+              layoutId={`card-${selectedImage.label}`}
+              className="relative w-full max-w-[90vw] md:max-w-7xl bg-transparent rounded-lg overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative aspect-[16/10] w-full bg-gray-900 rounded-lg overflow-hidden border border-white/10">
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-md transition-colors"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                <h3 className="text-white text-xl font-semibold">
+                  {selectedImage.label}
+                </h3>
+                <p className="text-white/70 text-sm mt-1">
+                  {selectedImage.alt}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

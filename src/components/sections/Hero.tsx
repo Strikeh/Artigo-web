@@ -67,7 +67,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen pt-32 pb-20 overflow-hidden flex flex-col items-center">
+    <section className="relative pt-32 pb-12 mb-16 overflow-hidden flex flex-col items-center">
       <AnimatedBlobs variant="hero" />
 
       <div className="max-container w-full section-padding relative z-10 text-center">
@@ -75,21 +75,17 @@ export function Hero() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="max-w-4xl mx-auto flex flex-col items-center"
+          className="max-w-5xl mx-auto flex flex-col items-center"
         >
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-text-primary leading-[1.05]">
-            Stop resizing.
+            One folder in.
             <br />
-            <span className="gradient-text">Start shipping.</span>
+            <span className="gradient-text">Every print format out.</span>
           </h1>
 
-          <p className="mt-8 text-xl md:text-2xl font-medium text-text-primary leading-tight max-w-2xl">
-            Artigo turns one artwork into every print-ready size — instantly.
-          </p>
-
-          <p className="mt-6 text-lg text-text-secondary leading-relaxed max-w-2xl">
-            Generate perfectly cropped, DPI-correct files for every ratio, every
-            size, in one click. Built for serious digital sellers.
+          <p className="mt-8 text-xl md:text-2xl text-text-secondary leading-relaxed max-w-2xl">
+            Artigo converts every artwork into all selected ratios, sizes, and
+            grid sheets — automatically, in a single bulk run.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">

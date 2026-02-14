@@ -1,63 +1,108 @@
 ﻿"use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const presets = [
-  { name: "Bookmark 4×1", desc: "US Letter", cells: "4×1" },
-  { name: "Portrait 2×2", desc: "Square grid", cells: "2×2" },
-  { name: "Landscape 4×4", desc: "Contact sheet", cells: "4×4" },
-  { name: "Portrait 8×8", desc: "Thumbnail grid", cells: "8×8" },
+  {
+    id: "bookmark",
+    name: "Bookmark 4×1",
+    desc: "US Letter (Landscape)",
+    image: "/images/4x1landscape.gif",
+  },
+  {
+    id: "square",
+    name: "Portrait 2×2",
+    desc: "Square grid",
+    image: "/images/portrait2x2.gif",
+  },
+  {
+    id: "contact",
+    name: "Landscape 4×4",
+    desc: "Contact sheet",
+    image: "/images/landscape4x4.gif",
+  },
+  {
+    id: "thumb",
+    name: "Portrait 8×8",
+    desc: "Thumbnail grid",
+    image: "/images/portrait8x8.gif",
+  },
 ];
 
 export function GridDeepDive() {
+  const [activePreset, setActivePreset] = useState(presets[0]); // Default to Bookmark
+
   return (
     <section className="section-padding bg-white/30">
       <div className="max-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Visual — Grid Preview */}
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="glass-strong rounded-2xl p-6 shadow-lg">
+          <div className="order-last lg:order-first">
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5 }}
+              className="glass-strong rounded-2xl p-6 shadow-lg"
+            >
               {/* Grid Preview Visual */}
-              <div className="bg-page rounded-xl p-6 mb-6">
-                <div className="grid grid-cols-4 gap-2 max-w-xs mx-auto">
-                  {[...Array(16)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.03 }}
-                      className="aspect-[3/4] rounded-md bg-gradient-to-br from-indigo-100 to-blue-100 border border-indigo-200/50"
+              <div className="bg-page rounded-xl p-8 mb-6 min-h-[400px] flex flex-col justify-center relative overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activePreset.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                    className="relative w-full aspect-[4/3] max-h-[350px]"
+                  >
+                    <Image
+                      src={activePreset.image}
+                      alt={`${activePreset.name} Animation`}
+                      fill
+                      className="object-contain rounded-md"
+                      unoptimized
                     />
-                  ))}
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className="absolute bottom-4 left-0 right-0 text-center">
+                  <p className="text-xs text-text-tertiary">
+                    {activePreset.name} — Paper 8.5×11 in
+                  </p>
                 </div>
-                <p className="text-xs text-text-tertiary text-center mt-4">
-                  Landscape 4×4 — Paper 8.5×11 in — Cell 2.13×2.75 in
-                </p>
               </div>
 
               {/* Preset Cards */}
               <div className="grid grid-cols-2 gap-3">
                 {presets.map((preset) => (
-                  <div
-                    key={preset.name}
-                    className="rounded-xl border border-indigo-100 bg-indigo-50/30 p-3"
+                  <button
+                    key={preset.id}
+                    onClick={() => setActivePreset(preset)}
+                    className={`rounded-xl border p-3 text-left transition-all duration-200 ${
+                      activePreset.id === preset.id
+                        ? "bg-indigo-50 border-indigo-200 shadow-sm ring-1 ring-indigo-200"
+                        : "bg-white/50 border-transparent hover:bg-white hover:border-gray-200"
+                    }`}
                   >
-                    <p className="text-sm font-semibold text-text-primary">
+                    <p
+                      className={`text-sm font-semibold transition-colors ${
+                        activePreset.id === preset.id
+                          ? "text-indigo-900"
+                          : "text-text-primary"
+                      }`}
+                    >
                       {preset.name}
                     </p>
                     <p className="text-xs text-text-secondary">{preset.desc}</p>
-                  </div>
+                  </button>
                 ))}
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           {/* Text */}
           <motion.div
@@ -66,17 +111,23 @@ export function GridDeepDive() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
           >
-            <SectionHeading accent="art prints." className="text-left" subtitle="Bookmarks. Sticker sheets. Contact grids.">
+            <SectionHeading
+              accent="art prints."
+              className="text-left"
+              subtitle="Bookmarks. Sticker sheets. Contact grids."
+            >
               More than art prints.
             </SectionHeading>
 
             <div className="mt-6 space-y-4 text-text-secondary leading-relaxed">
               <p>
-                Artigo’s grid engine arranges your artwork into print-ready layouts.
-                Perfect for physical product mockups or digital printable bundles.
+                Artigo’s grid engine arranges your artwork into print-ready
+                layouts. Perfect for physical product mockups or digital
+                printable bundles.
               </p>
               <p>
-                Choose a preset. Or define your own rows, columns, margins, and spacing.
+                Choose a preset. Or define your own rows, columns, margins, and
+                spacing.
               </p>
             </div>
           </motion.div>

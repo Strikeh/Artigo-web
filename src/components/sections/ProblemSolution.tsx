@@ -28,7 +28,8 @@ export function ProblemSolution() {
     <section className="section-padding">
       <div className="max-container">
         <SectionHeading subtitle="See the difference Artigo makes in your workflow.">
-          Manual resizing is <span className="gradient-text">not a workflow.</span>
+          Manual resizing is{" "}
+          <span className="gradient-text">not a workflow.</span>
         </SectionHeading>
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -38,35 +39,41 @@ export function ProblemSolution() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
-            className="rounded-card bg-white border border-red-100/60 p-8 md:p-10"
+            className="glass-strong rounded-card p-8 md:p-10 border border-red-100 relative overflow-hidden group"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center">
-                <X className="text-red-500" size={20} />
+            {/* Subtle bg decoration */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110" />
+
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center shadow-sm">
+                <X size={24} strokeWidth={2.5} />
               </div>
               <h3 className="text-xl font-bold text-text-primary">
                 What most sellers still do
               </h3>
             </div>
 
-            <ul className="space-y-3">
+            <ul className="space-y-4 relative z-10">
               {oldWay.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <X
-                    className="text-red-400 flex-shrink-0 mt-0.5"
-                    size={16}
-                  />
-                  <span className="text-sm text-text-secondary leading-relaxed">
+                <li key={i} className="flex items-center gap-3">
+                  <div className="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0">
+                    <X className="text-red-500" size={14} strokeWidth={2.5} />
+                  </div>
+                  <span className="text-base text-text-secondary font-medium">
                     {item}
                   </span>
                 </li>
               ))}
             </ul>
 
-            <p className="mt-6 text-sm font-medium text-red-500 bg-red-50 rounded-lg p-3 text-center">
-              20 artworks × 5 ratios × 4 sizes ={" "}
-              <strong>400 chances to make mistakes.</strong>
-            </p>
+            <div className="mt-8 relative z-10 bg-red-50 rounded-xl p-4 border border-red-100 text-center">
+              <p className="text-sm font-semibold text-red-600">
+                20 artworks × 5 ratios × 4 sizes =
+              </p>
+              <p className="text-lg font-bold text-red-700 mt-1">
+                400 chances to make mistakes.
+              </p>
+            </div>
           </motion.div>
 
           {/* New Way */}
@@ -75,39 +82,45 @@ export function ProblemSolution() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
-            className="rounded-card bg-white border border-emerald-100/60 p-8 md:p-10"
+            className="glass-strong rounded-card p-8 md:p-10 border border-emerald-100 relative overflow-hidden group shadow-lg ring-1 ring-emerald-500/10"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center">
-                <Check className="text-success" size={20} />
+            {/* Subtle bg decoration */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110" />
+
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center shadow-sm">
+                <Check size={24} strokeWidth={2.5} />
               </div>
               <h3 className="text-xl font-bold text-text-primary">
                 What Artigo does instead
               </h3>
             </div>
 
-            <ul className="space-y-3">
+            <ul className="space-y-4 relative z-10">
               {newWay.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <Check
-                    className="text-success flex-shrink-0 mt-0.5"
-                    size={16}
-                  />
-                  <span className="text-sm text-text-secondary leading-relaxed">
+                <li key={i} className="flex items-center gap-3">
+                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                    <Check
+                      className="text-emerald-600"
+                      size={14}
+                      strokeWidth={3}
+                    />
+                  </div>
+                  <span className="text-base text-text-primary font-medium">
                     {item}
                   </span>
                 </li>
               ))}
             </ul>
 
-            <p className="mt-6 text-sm font-medium text-success bg-emerald-50 rounded-lg p-3 text-center">
-              Same 400 files. <strong>Generated in minutes.</strong>
-            </p>
-
-            <p className="mt-6 text-sm font-medium text-success bg-emerald-50 rounded-lg p-3 text-center">
-              Same 400 files. Under 10 minutes.{" "}
-              <strong>Zero errors.</strong>
-            </p>
+            <div className="mt-8 relative z-10 bg-emerald-50 rounded-xl p-4 border border-emerald-100 text-center">
+              <p className="text-sm font-semibold text-emerald-600">
+                Same 400 files. Under 10 minutes.
+              </p>
+              <p className="text-lg font-bold text-emerald-700 mt-1">
+                Zero errors.
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -21,6 +21,7 @@ export function FinalCTA() {
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.01 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
           className="glass-strong rounded-panel p-12 md:p-16 text-center max-w-4xl mx-auto shadow-2xl border border-white/50"
@@ -28,9 +29,7 @@ export function FinalCTA() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary tracking-tight leading-tight mb-6">
             Ready to automate your
             <br />
-            <span className="gradient-text">
-              art production?
-            </span>
+            <span className="gradient-text">art production?</span>
           </h2>
 
           <p className="mt-6 text-lg text-text-secondary max-w-xl mx-auto leading-relaxed">
@@ -39,11 +38,7 @@ export function FinalCTA() {
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              href="/download"
-              size="lg"
-              icon={<Download size={20} />}
-            >
+            <Button href="/download" size="lg" icon={<Download size={20} />}>
               Download Artigo Free
             </Button>
             <Button variant="secondary" size="lg" href="#pricing">
@@ -52,14 +47,20 @@ export function FinalCTA() {
           </div>
 
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {trustIndicators.map((item) => (
-              <div
+            {trustIndicators.map((item, i) => (
+              <motion.div
                 key={item.text}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 + i * 0.1, duration: 0.4 }}
                 className="flex flex-col items-center gap-3 text-center"
               >
                 <item.icon size={20} className="text-accent-indigo" />
-                <span className="text-sm text-text-secondary font-medium">{item.text}</span>
-              </div>
+                <span className="text-sm text-text-secondary font-medium">
+                  {item.text}
+                </span>
+              </motion.div>
             ))}
           </div>
         </motion.div>

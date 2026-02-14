@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { FolderOpen, SlidersHorizontal, Rocket } from "lucide-react";
@@ -13,9 +14,8 @@ const steps = [
     iconColor: "text-feature-orange",
     iconBg: "bg-orange-50",
     title: "Select",
-    description:
-      "Drop in your artwork folder and choose your output location.",
-    placeholder: "screenshot-step1.png",
+    description: "Drop in your artwork folder and choose your output location.",
+    image: "/images/step-1-select.png",
   },
   {
     num: "02",
@@ -25,7 +25,7 @@ const steps = [
     title: "Configure",
     description:
       "Toggle ratios, sizes, grids, and crop modes. Preview before you run.",
-    placeholder: "screenshot-step2.png",
+    image: "/images/step-2-configure.png",
   },
   {
     num: "03",
@@ -35,7 +35,7 @@ const steps = [
     title: "Generate",
     description:
       "Artigo handles the math, naming, DPI metadata, folders, and ZIP packaging.",
-    placeholder: "screenshot-step3.png",
+    image: "/images/step-3-generate.png",
   },
 ];
 
@@ -104,9 +104,14 @@ export function HowItWorks() {
                 {step.description}
               </p>
 
-              {/* Screenshot Placeholder */}
-              <div className="rounded-xl bg-page overflow-hidden aspect-video flex items-center justify-center border border-card-border">
-                <p className="text-xs text-text-tertiary">{step.placeholder}</p>
+              {/* Screenshot Image */}
+              <div className="rounded-xl bg-page overflow-hidden aspect-video relative border border-card-border shadow-sm group-hover:shadow-md transition-shadow">
+                <Image
+                  src={step.image}
+                  alt={step.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
             </GlassCard>
           ))}
@@ -121,7 +126,8 @@ export function HowItWorks() {
           className="mt-16 text-center"
         >
           <p className="text-lg md:text-xl font-medium text-text-secondary">
-            1 artwork → 5 ratios → 4 sizes each → <strong>20 ready-to-sell files.</strong>
+            1 artwork → 5 ratios → 4 sizes each →{" "}
+            <strong>20 ready-to-sell files.</strong>
           </p>
         </motion.div>
       </div>

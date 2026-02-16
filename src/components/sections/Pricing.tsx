@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X, Shield, Sparkles } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -46,6 +47,39 @@ const proTier = {
 };
 
 export function Pricing() {
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+
+  const handleCheckout = async () => {
+    setIsCheckoutLoading(true);
+
+    try {
+      const response = await fetch(
+        "https://artigo-production.up.railway.app/api/checkout",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Checkout failed");
+      }
+
+      const data = await response.json();
+      // Redirect to Stripe checkout
+      window.location.href = data.url;
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert(
+        "Unable to start checkout. Please try again or contact support@getartigo.com",
+      );
+      setIsCheckoutLoading(false);
+    }
+  };
+
   return (
     <section id="pricing" className="section-padding">
       <div className="max-container">
@@ -130,7 +164,7 @@ export function Pricing() {
 
             <div className="mb-8">
               {proTier.originalPrice && (
-                <span className="text-lg font-semibold text-text-tertiary line-through mr-2">
+                <span className="text-2xl font-bold text-text-secondary/60 line-through mr-3">
                   {proTier.originalPrice}
                 </span>
               )}
@@ -158,8 +192,12 @@ export function Pricing() {
               ))}
             </ul>
 
-            <Button href="/download" className="w-full">
-              {proTier.cta}
+            <Button
+              onClick={handleCheckout}
+              className="w-full"
+              disabled={isCheckoutLoading}
+            >
+              {isCheckoutLoading ? "Starting checkout..." : proTier.cta}
             </Button>
           </motion.div>
         </div>

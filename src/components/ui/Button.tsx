@@ -11,6 +11,7 @@ interface ButtonProps {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
 export function Button({
@@ -21,6 +22,7 @@ export function Button({
   children,
   onClick,
   className = "",
+  disabled = false,
 }: ButtonProps) {
   const sizeClasses = {
     sm: "px-5 py-2.5 text-sm",
@@ -28,7 +30,7 @@ export function Button({
     lg: "px-10 py-5 text-lg",
   };
 
-  const base = `${variant === "primary" ? "btn-primary" : "btn-secondary"} ${sizeClasses[size]} ${className}`;
+  const base = `${variant === "primary" ? "btn-primary" : "btn-secondary"} ${sizeClasses[size]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
 
   if (href) {
     return (
@@ -40,7 +42,7 @@ export function Button({
   }
 
   return (
-    <button onClick={onClick} className={base}>
+    <button onClick={onClick} className={base} disabled={disabled}>
       {icon && <span className="flex-shrink-0">{icon}</span>}
       {children}
     </button>

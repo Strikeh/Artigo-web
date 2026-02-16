@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Download } from "lucide-react";
 
 const navLinks = [
@@ -37,18 +38,25 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "glass-strong shadow-sm"
-            : "bg-transparent"
+          scrolled ? "glass-strong shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="max-container flex items-center justify-between h-16 md:h-20 px-6 md:px-12 lg:px-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-accent flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative w-10 h-10">
+              <Image
+                src="/images/logo.svg"
+                alt="Artigo Logo"
+                fill
+                className="object-contain"
+              />
             </div>
-            <span className="text-lg font-bold text-text-primary">Artigo</span>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-text-primary leading-none">
+                Artigo
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}

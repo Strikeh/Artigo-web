@@ -24,8 +24,9 @@ const freeTier = {
 
 const proTier = {
   name: "Pro",
-  price: "€49",
-  originalPrice: undefined,
+  price: "$59",
+  originalPrice: "$99",
+  discount: "$40 OFF EARLY BIRD DISCOUNT",
   badge: "Recommended",
   cta: "Upgrade to Pro",
   ctaVariant: "primary" as const,
@@ -80,9 +81,15 @@ export function Pricing() {
               {freeTier.features.map((f) => (
                 <li key={f.text} className="flex items-start gap-3">
                   {f.included ? (
-                    <Check className="text-success flex-shrink-0 mt-0.5" size={16} />
+                    <Check
+                      className="text-success flex-shrink-0 mt-0.5"
+                      size={16}
+                    />
                   ) : (
-                    <X className="text-text-tertiary flex-shrink-0 mt-0.5" size={16} />
+                    <X
+                      className="text-text-tertiary flex-shrink-0 mt-0.5"
+                      size={16}
+                    />
                   )}
                   <span
                     className={`text-sm ${f.included ? "text-text-secondary" : "text-text-tertiary line-through"}`}
@@ -109,16 +116,29 @@ export function Pricing() {
             {/* Glow Effect */}
             <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-accent-indigo/20 to-accent-blue/20 -z-10 blur-sm" />
 
-            <div className="mb-6">
+            <div className="mb-6 flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-white bg-gradient-accent rounded-full px-3 py-1">
                 <Sparkles size={12} />
                 {proTier.badge}
               </span>
+              {proTier.discount && (
+                <span className="text-xs font-semibold uppercase tracking-wider text-text-primary bg-success/20 rounded-full px-3 py-1 border border-success/30">
+                  {proTier.discount}
+                </span>
+              )}
             </div>
 
             <div className="mb-8">
+              {proTier.originalPrice && (
+                <span className="text-lg font-semibold text-text-tertiary line-through mr-2">
+                  {proTier.originalPrice}
+                </span>
+              )}
               <span className="text-4xl font-extrabold text-text-primary">
                 {proTier.price}
+              </span>
+              <span className="text-sm text-text-secondary ml-2">
+                one-time payment
               </span>
             </div>
 

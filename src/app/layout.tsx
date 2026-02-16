@@ -53,8 +53,8 @@ export default function RootLayout({
                 "Batch image resizing and grid composition tool for digital art sellers and print production.",
               offers: {
                 "@type": "Offer",
-                price: "29",
-                priceCurrency: "EUR",
+                price: "59",
+                priceCurrency: "USD",
                 availability: "https://schema.org/InStock",
               },
             }),

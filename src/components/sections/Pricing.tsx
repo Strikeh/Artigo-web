@@ -53,6 +53,8 @@ export function Pricing() {
     setIsCheckoutLoading(true);
 
     try {
+      console.log("Starting checkout request...");
+
       const response = await fetch(
         "https://artigo-production.up.railway.app/api/checkout",
         {
@@ -64,17 +66,30 @@ export function Pricing() {
         },
       );
 
+      console.log("Response status:", response.status);
+      console.log("Response ok:", response.ok);
+
       if (!response.ok) {
-        throw new Error("Checkout failed");
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Error response:", errorData);
+        throw new Error(
+          errorData.message || `Checkout failed with status ${response.status}`,
+        );
       }
 
       const data = await response.json();
+      console.log("Checkout success, redirecting to:", data.url);
+
       // Redirect to Stripe checkout
       window.location.href = data.url;
     } catch (error) {
       console.error("Checkout error:", error);
+
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occurred";
+
       alert(
-        "Unable to start checkout. Please try again or contact support@getartigo.com",
+        `Unable to start checkout: ${errorMessage}\n\nPlease try again or contact support@getartigo.com`,
       );
       setIsCheckoutLoading(false);
     }

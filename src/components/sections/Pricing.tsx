@@ -17,7 +17,6 @@ const freeTier = {
     { included: true, text: "2 ratios" },
     { included: true, text: "Basic grid presets" },
     { included: true, text: "JPG export" },
-    { included: true, text: "Watermark included" },
     { included: false, text: "Unlimited artworks" },
     { included: false, text: "All ratios & sizes" },
   ],

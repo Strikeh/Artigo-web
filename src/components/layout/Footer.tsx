@@ -2,15 +2,16 @@
 import Image from "next/image";
 
 const productLinks = [
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Features", href: "/#features" },
+  { label: "Blog", href: "/blog" },
+  { label: "Pricing", href: "/#pricing" },
   { label: "Download", href: "/download" },
   { label: "Roadmap", href: "#" },
   { label: "Changelog", href: "#" },
 ];
 
 const supportLinks = [
-  { label: "FAQ", href: "#faq" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "mailto:support@artigo.app" },
   { label: "Documentation", href: "#" },
   { label: "Report a Bug", href: "#" },

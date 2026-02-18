@@ -63,7 +63,7 @@ export function ProblemSolution() {
                       strokeWidth={2.5}
                     />
                   </div>
-                  <span className="text-base text-text-secondary font-medium line-through decoration-purple-200">
+                  <span className="text-base text-text-secondary font-medium decoration-purple-200">
                     {item}
                   </span>
                 </li>

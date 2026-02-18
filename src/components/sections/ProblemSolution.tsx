@@ -39,14 +39,14 @@ export function ProblemSolution() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
-            className="glass-strong rounded-card p-8 md:p-10 border border-red-100 relative overflow-hidden group"
+            className="glass-strong rounded-card p-8 md:p-10 border border-purple-100/60 relative overflow-hidden group"
           >
             {/* Subtle bg decoration */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110" />
+            <div className="absolute top-0 right-0 w-40 h-40 bg-purple-200/20 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110" />
 
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center shadow-sm">
-                <X size={24} strokeWidth={2.5} />
+              <div className="w-12 h-12 rounded-2xl bg-purple-100/80 flex items-center justify-center shadow-sm">
+                <X size={22} strokeWidth={2.5} className="text-purple-400" />
               </div>
               <h3 className="text-xl font-bold text-text-primary">
                 What most sellers still do
@@ -56,21 +56,25 @@ export function ProblemSolution() {
             <ul className="space-y-4 relative z-10">
               {oldWay.map((item, i) => (
                 <li key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0">
-                    <X className="text-red-500" size={14} strokeWidth={2.5} />
+                  <div className="w-6 h-6 rounded-full bg-purple-100/60 flex items-center justify-center flex-shrink-0">
+                    <X
+                      className="text-purple-400"
+                      size={12}
+                      strokeWidth={2.5}
+                    />
                   </div>
-                  <span className="text-base text-text-secondary font-medium">
+                  <span className="text-base text-text-secondary font-medium line-through decoration-purple-200">
                     {item}
                   </span>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-8 relative z-10 bg-red-50 rounded-xl p-4 border border-red-100 text-center">
-              <p className="text-sm font-semibold text-red-600">
+            <div className="mt-8 relative z-10 bg-purple-50/80 rounded-xl p-4 border border-purple-100/60 text-center">
+              <p className="text-sm font-semibold text-purple-500">
                 20 artworks × 5 ratios × 4 sizes =
               </p>
-              <p className="text-lg font-bold text-red-700 mt-1">
+              <p className="text-lg font-bold text-purple-600 mt-1">
                 400 chances to make mistakes.
               </p>
             </div>
@@ -82,14 +86,18 @@ export function ProblemSolution() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
-            className="glass-strong rounded-card p-8 md:p-10 border border-emerald-100 relative overflow-hidden group shadow-lg ring-1 ring-emerald-500/10"
+            className="glass-strong rounded-card p-8 md:p-10 border border-indigo-100/60 relative overflow-hidden group shadow-lg ring-1 ring-indigo-200/30"
           >
             {/* Subtle bg decoration */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110" />
+            <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-200/20 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110" />
 
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center shadow-sm">
-                <Check size={24} strokeWidth={2.5} />
+              <div className="w-12 h-12 rounded-2xl bg-indigo-100/80 flex items-center justify-center shadow-sm">
+                <Check
+                  size={22}
+                  strokeWidth={2.5}
+                  className="text-indigo-500"
+                />
               </div>
               <h3 className="text-xl font-bold text-text-primary">
                 What Artigo does instead
@@ -99,10 +107,10 @@ export function ProblemSolution() {
             <ul className="space-y-4 relative z-10">
               {newWay.map((item, i) => (
                 <li key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-indigo-100/80 flex items-center justify-center flex-shrink-0">
                     <Check
-                      className="text-emerald-600"
-                      size={14}
+                      className="text-indigo-500"
+                      size={12}
                       strokeWidth={3}
                     />
                   </div>
@@ -113,11 +121,11 @@ export function ProblemSolution() {
               ))}
             </ul>
 
-            <div className="mt-8 relative z-10 bg-emerald-50 rounded-xl p-4 border border-emerald-100 text-center">
-              <p className="text-sm font-semibold text-emerald-600">
+            <div className="mt-8 relative z-10 bg-indigo-50/80 rounded-xl p-4 border border-indigo-100/60 text-center">
+              <p className="text-sm font-semibold text-indigo-500">
                 Same 400 files. Under 10 minutes.
               </p>
-              <p className="text-lg font-bold text-emerald-700 mt-1">
+              <p className="text-lg font-bold text-indigo-600 mt-1">
                 Zero errors.
               </p>
             </div>

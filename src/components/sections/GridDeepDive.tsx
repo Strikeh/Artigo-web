@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
 
 const presets = [
   {
@@ -59,12 +60,12 @@ export function GridDeepDive() {
                     transition={{ duration: 0.3 }}
                     className="relative w-full aspect-[4/3] max-h-[350px]"
                   >
-                    <Image
+                    <ImageLightbox
                       src={activePreset.image}
                       alt={`${activePreset.name} Animation`}
-                      fill
-                      className="object-contain rounded-md"
-                      unoptimized
+                      width={800}
+                      height={600}
+                      className="object-contain w-full h-full rounded-md"
                     />
                   </motion.div>
                 </AnimatePresence>

@@ -10,11 +10,17 @@ import {
   Cpu,
   MemoryStick,
   ExternalLink,
+  AlertTriangle,
+  Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { AnimatedBlobs } from "@/components/layout/AnimatedBlobs";
 
 type OS = "windows" | "mac" | "other";
+
+const DOWNLOAD_URL =
+  "https://github.com/Strikeh/Artigo-web/releases/download/v0.9.0-beta.1/Artigo-Setup-1.0.0.exe";
+const VERSION = "0.9.0-beta.1";
 
 const systemReqs = [
   { icon: Monitor, label: "OS", value: "Windows 10+ (64-bit) or macOS 12+" },
@@ -57,42 +63,71 @@ export default function DownloadPage() {
             <div className="mt-10 flex flex-col items-center gap-4">
               {os === "windows" || os === "other" ? (
                 <>
-                  <Button size="lg" icon={<Monitor size={20} />}>
-                    Download for Windows
-                  </Button>
                   <a
-                    href="#"
-                    className="text-sm text-text-secondary hover:text-accent-indigo transition-colors flex items-center gap-1"
+                    href={DOWNLOAD_URL}
+                    className="btn-primary px-10 py-5 text-lg inline-flex items-center gap-3"
                   >
-                    <Apple size={14} />
-                    Also available for macOS
-                    <ExternalLink size={12} />
+                    <Download size={20} />
+                    Download for Windows (Beta)
                   </a>
+                  <p className="text-sm text-text-tertiary flex items-center gap-1">
+                    <Apple size={14} />
+                    macOS version coming soon
+                  </p>
                 </>
               ) : (
                 <>
-                  <Button size="lg" icon={<Apple size={20} />}>
-                    Download for macOS
-                  </Button>
                   <a
-                    href="#"
-                    className="text-sm text-text-secondary hover:text-accent-indigo transition-colors flex items-center gap-1"
+                    href={DOWNLOAD_URL}
+                    className="btn-primary px-10 py-5 text-lg inline-flex items-center gap-3"
                   >
-                    <Monitor size={14} />
-                    Also available for Windows
-                    <ExternalLink size={12} />
+                    <Download size={20} />
+                    Download for Windows (Beta)
                   </a>
+                  <p className="text-sm text-text-tertiary flex items-center gap-1">
+                    <Apple size={14} />
+                    macOS version coming soon
+                  </p>
                 </>
               )}
             </div>
 
             {/* Version */}
             <p className="mt-6 text-xs text-text-tertiary">
-              v1.0.0 ·{" "}
-              <a href="#" className="underline hover:text-text-secondary">
-                Changelog
+              v{VERSION} ·{" "}
+              <a
+                href="https://github.com/Strikeh/Artigo-web/releases"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-text-secondary"
+              >
+                Release Notes
               </a>
             </p>
+          </motion.div>
+
+          {/* SmartScreen Warning Notice */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-12 max-w-2xl mx-auto"
+          >
+            <div className="glass-strong rounded-2xl p-6 border border-yellow-400/30 bg-yellow-50/50">
+              <div className="flex items-start gap-4">
+                <AlertTriangle className="text-yellow-600 flex-shrink-0 mt-1" size={24} />
+                <div className="text-left">
+                  <h3 className="text-base font-semibold text-text-primary mb-2">
+                    Windows SmartScreen Warning Expected
+                  </h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    This installer is <strong>not yet code-signed</strong>. You&#39;ll see a 
+                    &quot;Windows protected your PC&quot; warning. This is normal for new apps. 
+                    Click <strong>&quot;More info&quot;</strong> → <strong>&quot;Run anyway&quot;</strong> to install.
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -132,7 +167,7 @@ export default function DownloadPage() {
       <section className="section-padding bg-white/30">
         <div className="max-container max-w-3xl">
           <h2 className="text-2xl font-bold text-text-primary text-center mb-10">
-            Installation
+            Installation Guide
           </h2>
 
           <ol className="space-y-6">
@@ -140,17 +175,27 @@ export default function DownloadPage() {
               {
                 step: "1",
                 title: "Download the installer",
-                desc: "Click the download button above to get the latest version for your operating system.",
+                desc: "Click the download button above to get Artigo-Setup-1.0.0.exe (approx. 100 MB).",
               },
               {
                 step: "2",
                 title: "Run the installer",
-                desc: "Open the downloaded file and follow the installation wizard. On macOS, drag Artigo to your Applications folder.",
+                desc: "Double-click the downloaded .exe file to start the installation wizard.",
               },
               {
                 step: "3",
-                title: "Start producing",
-                desc: "Launch Artigo, select your source folder, configure your ratios, and hit Generate. It's that simple.",
+                title: "Handle SmartScreen warning (if shown)",
+                desc: "If you see \"Windows protected your PC\", click \"More info\" then \"Run anyway\". This is normal for new apps without code signing.",
+              },
+              {
+                step: "4",
+                title: "Complete installation",
+                desc: "Follow the installer steps. Artigo will be added to your Start Menu and desktop.",
+              },
+              {
+                step: "5",
+                title: "Launch and start creating",
+                desc: "Open Artigo, select your images, configure ratios, and generate your production files!",
               },
             ].map((item) => (
               <motion.li
@@ -174,6 +219,33 @@ export default function DownloadPage() {
               </motion.li>
             ))}
           </ol>
+
+          {/* Trust & Security Note */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 glass-strong rounded-2xl p-6 border border-white/40"
+          >
+            <div className="flex items-start gap-4">
+              <Shield className="text-accent-indigo flex-shrink-0 mt-1" size={24} />
+              <div>
+                <h3 className="text-base font-semibold text-text-primary mb-2">
+                  Why the SmartScreen warning?
+                </h3>
+                <p className="text-sm text-text-secondary leading-relaxed mb-3">
+                  This warning appears because we haven&#39;t purchased a code signing 
+                  certificate yet (€120/year). <strong>The app is completely safe</strong> — 
+                  it runs entirely offline and doesn&#39;t collect any data.
+                </p>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  As more users install Artigo, Microsoft builds reputation and the warning 
+                  will automatically reduce. We may add code signing or publish to Microsoft 
+                  Store in future releases.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

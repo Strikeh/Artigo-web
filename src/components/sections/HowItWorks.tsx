@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from "react";
 import { FolderOpen, SlidersHorizontal, Rocket } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
 
 const steps = [
   {
@@ -106,11 +107,12 @@ export function HowItWorks() {
 
               {/* Screenshot Image */}
               <div className="rounded-xl bg-page overflow-hidden aspect-video relative border border-card-border shadow-sm group-hover:shadow-md transition-shadow">
-                <Image
+                <ImageLightbox
                   src={step.image}
                   alt={step.title}
-                  fill
-                  className="object-cover"
+                  width={800}
+                  height={450}
+                  className="object-cover w-full h-full"
                 />
               </div>
             </GlassCard>

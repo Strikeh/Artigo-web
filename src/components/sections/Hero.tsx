@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Download, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { AnimatedBlobs } from "@/components/layout/AnimatedBlobs";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
 
 const screenshots = [
   { src: "/images/home.png", alt: "Artigo Home Dashboard" },
@@ -77,6 +78,18 @@ export function Hero() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="max-w-5xl mx-auto flex flex-col items-center"
         >
+          {/* Beta Release Badge */}
+          <motion.a
+            href="/download"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-accent text-white text-sm font-semibold mb-6 hover:scale-105 transition-transform shadow-lg"
+          >
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            🎉 Beta Now Available — Download Free
+          </motion.a>
+
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-text-primary leading-[1.05]">
             One folder in.
             <br />
@@ -90,7 +103,7 @@ export function Hero() {
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Button href="/download" size="lg" icon={<Download size={20} />}>
-              Download Free
+              Download Beta
             </Button>
             <Button
               variant="secondary"
@@ -166,13 +179,13 @@ export function Hero() {
                   className="absolute inset-0 w-full h-full p-4 md:p-8"
                 >
                   <div className="relative w-full h-full shadow-2xl rounded-lg overflow-hidden border border-black/5 bg-white">
-                    <Image
+                    <ImageLightbox
                       src={screenshots[currentIndex].src}
                       alt={screenshots[currentIndex].alt}
-                      fill
-                      className="object-contain"
+                      width={1200}
+                      height={750}
+                      className="object-contain w-full h-full"
                       priority={currentIndex === 0}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     />
                   </div>
                 </motion.div>

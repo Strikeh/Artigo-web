@@ -126,7 +126,7 @@ export function ImageLightbox({
               </motion.div>
             )}
           </AnimatePresence>,
-          document.body
+          document.body,
         )}
     </>
   );

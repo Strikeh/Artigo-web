@@ -115,15 +115,20 @@ export default function DownloadPage() {
           >
             <div className="glass-strong rounded-2xl p-6 border border-yellow-400/30 bg-yellow-50/50">
               <div className="flex items-start gap-4">
-                <AlertTriangle className="text-yellow-600 flex-shrink-0 mt-1" size={24} />
+                <AlertTriangle
+                  className="text-yellow-600 flex-shrink-0 mt-1"
+                  size={24}
+                />
                 <div className="text-left">
                   <h3 className="text-base font-semibold text-text-primary mb-2">
                     Windows SmartScreen Warning Expected
                   </h3>
                   <p className="text-sm text-text-secondary leading-relaxed">
-                    This installer is <strong>not yet code-signed</strong>. You&#39;ll see a 
-                    &quot;Windows protected your PC&quot; warning. This is normal for new apps. 
-                    Click <strong>&quot;More info&quot;</strong> → <strong>&quot;Run anyway&quot;</strong> to install.
+                    This installer is <strong>not yet code-signed</strong>.
+                    You&#39;ll see a &quot;Windows protected your PC&quot;
+                    warning. This is normal for new apps. Click{" "}
+                    <strong>&quot;More info&quot;</strong> →{" "}
+                    <strong>&quot;Run anyway&quot;</strong> to install.
                   </p>
                 </div>
               </div>
@@ -185,7 +190,7 @@ export default function DownloadPage() {
               {
                 step: "3",
                 title: "Handle SmartScreen warning (if shown)",
-                desc: "If you see \"Windows protected your PC\", click \"More info\" then \"Run anyway\". This is normal for new apps without code signing.",
+                desc: 'If you see "Windows protected your PC", click "More info" then "Run anyway". This is normal for new apps without code signing.',
               },
               {
                 step: "4",
@@ -228,20 +233,24 @@ export default function DownloadPage() {
             className="mt-12 glass-strong rounded-2xl p-6 border border-white/40"
           >
             <div className="flex items-start gap-4">
-              <Shield className="text-accent-indigo flex-shrink-0 mt-1" size={24} />
+              <Shield
+                className="text-accent-indigo flex-shrink-0 mt-1"
+                size={24}
+              />
               <div>
                 <h3 className="text-base font-semibold text-text-primary mb-2">
                   Why the SmartScreen warning?
                 </h3>
                 <p className="text-sm text-text-secondary leading-relaxed mb-3">
-                  This warning appears because we haven&#39;t purchased a code signing 
-                  certificate yet (€120/year). <strong>The app is completely safe</strong> — 
-                  it runs entirely offline and doesn&#39;t collect any data.
+                  This warning appears because we haven&#39;t purchased a code
+                  signing certificate yet (€120/year).{" "}
+                  <strong>The app is completely safe</strong> — it runs entirely
+                  offline and doesn&#39;t collect any data.
                 </p>
                 <p className="text-sm text-text-secondary leading-relaxed">
-                  As more users install Artigo, Microsoft builds reputation and the warning 
-                  will automatically reduce. We may add code signing or publish to Microsoft 
-                  Store in future releases.
+                  As more users install Artigo, Microsoft builds reputation and
+                  the warning will automatically reduce. We may add code signing
+                  or publish to Microsoft Store in future releases.
                 </p>
               </div>
             </div>

@@ -19,7 +19,7 @@ import { AnimatedBlobs } from "@/components/layout/AnimatedBlobs";
 type OS = "windows" | "mac" | "other";
 
 const DOWNLOAD_URL =
-  "https://github.com/Strikeh/Artigo-web/releases/download/v0.9.0-beta.1/Artigo-Setup-1.0.0.exe";
+  "https://github.com/Strikeh/Artigo-web/releases/latest/download/Artigo-Setup.exe";
 const VERSION = "0.9.0-beta.1";
 
 const systemReqs = [
@@ -180,7 +180,7 @@ export default function DownloadPage() {
               {
                 step: "1",
                 title: "Download the installer",
-                desc: "Click the download button above to get Artigo-Setup-1.0.0.exe (approx. 100 MB).",
+                desc: "Click the download button above to get Artigo-Setup.exe (approx. 100 MB).",
               },
               {
                 step: "2",

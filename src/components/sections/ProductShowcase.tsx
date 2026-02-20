@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Play } from "lucide-react";
+import { X } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const galleryItems = [
@@ -54,7 +54,7 @@ export function ProductShowcase() {
           See it in <span className="gradient-text">action.</span>
         </SectionHeading>
 
-        {/* Video Placeholder */}
+        {/* Ratio Engine Video */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,19 +62,15 @@ export function ProductShowcase() {
           transition={{ duration: 0.6 }}
           className="mt-12 mb-16"
         >
-          <div className="glass-strong rounded-2xl p-3 shadow-xl max-w-4xl mx-auto group cursor-pointer relative overflow-hidden">
-            {/* Fake Video UI for now */}
-            <div className="rounded-xl overflow-hidden aspect-video bg-gray-900 flex items-center justify-center relative">
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-
-              <div className="w-20 h-20 rounded-full bg-white/90 group-hover:scale-110 transition-transform flex items-center justify-center relative z-10 shadow-lg backdrop-blur-sm">
-                <Play className="w-8 h-8 text-accent ml-1 fill-current" />
-              </div>
-
-              <div className="absolute bottom-6 left-6 text-white text-left z-10">
-                <p className="font-semibold text-lg">Platform Walkthrough</p>
-                <p className="text-white/70 text-sm">2:14 min</p>
-              </div>
+          <div className="glass-strong rounded-2xl p-3 shadow-xl max-w-4xl mx-auto overflow-hidden">
+            <div className="rounded-xl overflow-hidden aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/63N93wpFv9A"
+                title="Artigo | Batch Convert Artwork to Multiple Aspect Ratios at Once"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
             </div>
           </div>
         </motion.div>

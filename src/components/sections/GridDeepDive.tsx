@@ -133,6 +133,27 @@ export function GridDeepDive() {
             </div>
           </motion.div>
         </div>
+
+        {/* Grid Engine Video */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="mt-16"
+        >
+          <div className="glass-strong rounded-2xl p-3 shadow-xl max-w-4xl mx-auto overflow-hidden">
+            <div className="rounded-xl overflow-hidden aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/Ww73hfQROro"
+                title="Artigo | Create Print-Ready Image Grids in Seconds (8x8, 4x4 &amp; More)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -10,6 +10,24 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "create-preview-grids-digital-art-packs",
+    title: "How to Create Beautiful Preview Grids for Large Digital Art Packs",
+    excerpt:
+      "Selling digital bundles with 50+ images? Learn how to instantly generate stunning preview grids and contact sheets to showcase your entire collection.",
+    category: "Tutorial",
+    readTime: "4 min",
+    date: "February 21, 2026",
+  },
+  {
+    slug: "batch-resize-images-etsy-without-photoshop",
+    title: "How to Batch Resize Images for Etsy Without Photoshop or Scripts",
+    excerpt:
+      "Etsy changed their recommended photo ratio, and updating old listings is a nightmare. Here is how to automate it without coding.",
+    category: "Guide",
+    readTime: "3 min",
+    date: "February 21, 2026",
+  },
+  {
     slug: "sell-digital-wall-art-etsy",
     title: "How to Sell Digital Wall Art on Etsy: Complete Guide",
     excerpt:

@@ -55,7 +55,14 @@ export function ProblemSolution() {
 
             <ul className="space-y-4 relative z-10">
               {oldWay.map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                  className="flex items-center gap-3"
+                >
                   <div className="w-6 h-6 rounded-full bg-purple-100/60 flex items-center justify-center flex-shrink-0">
                     <X
                       className="text-purple-400"
@@ -66,7 +73,7 @@ export function ProblemSolution() {
                   <span className="text-base text-text-secondary font-medium decoration-purple-200">
                     {item}
                   </span>
-                </li>
+                </motion.li>
               ))}
             </ul>
 
@@ -106,18 +113,25 @@ export function ProblemSolution() {
 
             <ul className="space-y-4 relative z-10">
               {newWay.map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-indigo-100/80 flex items-center justify-center flex-shrink-0">
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 + i * 0.15 }}
+                  className="flex items-center gap-4"
+                >
+                  <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0 shadow-sm">
                     <Check
-                      className="text-indigo-500"
-                      size={12}
+                      className="text-indigo-600"
+                      size={16}
                       strokeWidth={3}
                     />
                   </div>
-                  <span className="text-base text-text-primary font-medium">
+                  <span className="text-lg text-text-primary font-semibold">
                     {item}
                   </span>
-                </li>
+                </motion.li>
               ))}
             </ul>
 

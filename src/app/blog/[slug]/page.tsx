@@ -36,7 +36,7 @@ const posts: Record<
           platforms like Etsy or Creative Market, you know that{" "}
           <strong>buyers want to see exactly what they are getting</strong>.
           When you are selling a pack of 50, 100, or even 500 images, a single
-          cover photo just isn't enough.
+          cover photo just isn&apos;t enough.
         </p>
         <p>
           You need beautiful, organized preview grids (often called contact
@@ -68,12 +68,12 @@ const posts: Record<
           art.
         </p>
         <h2 className="text-2xl font-bold text-text-primary mt-8 mb-4">
-          The 5-Second Solution: Artigo's Grid Engine
+          The 5-Second Solution: Artigo&apos;s Grid Engine
         </h2>
         <p>
           This is exactly why we built the <strong>Grid Engine</strong> into
-          Artigo. It's designed specifically to take the pain out of creating
-          preview sheets for large digital bundles.
+          Artigo. It&apos;s designed specifically to take the pain out of
+          creating preview sheets for large digital bundles.
         </p>
         <p>Instead of manually aligning images, you simply:</p>
         <ul className="list-disc pl-6 space-y-2">
@@ -92,7 +92,7 @@ const posts: Record<
         </p>
         <p>
           You can even customize the rows, columns, margins, and spacing to
-          perfectly match your brand's aesthetic.
+          perfectly match your brand&apos;s aesthetic.
         </p>
         <div className="mt-8 p-6 bg-indigo-50 rounded-xl border border-indigo-100">
           <h3 className="text-lg font-bold text-indigo-900 mb-2">
@@ -138,14 +138,14 @@ const posts: Record<
         <p>
           When you search for a solution online, you see a lot of people
           suggesting tools like ImageMagick or writing custom Python scripts.
-          But honestly, if you're not a programmer, setting up command-line
+          But honestly, if you&apos;re not a programmer, setting up command-line
           tools is incredibly frustrating.
         </p>
         <p>
           Other suggestions include using Photoshop actions or Canva Pro. But
           Photoshop requires a subscription and a learning curve, and uploading
-          high-res art to online tools isn't great for your copyright or your
-          internet bandwidth.
+          high-res art to online tools isn&apos;t great for your copyright or
+          your internet bandwidth.
         </p>
         <h2 className="text-2xl font-bold text-text-primary mt-8 mb-4">
           The Offline, No-Code Solution
@@ -154,12 +154,12 @@ const posts: Record<
           I had this exact same frustration. I was spending hours manually
           resizing my product photos and digital prints for different platforms,
           and it was driving me crazy. I actually got so frustrated that I built
-          a simple Windows desktop app specifically to solve this. It's called{" "}
-          <strong>Artigo</strong>.
+          a simple Windows desktop app specifically to solve this. It&apos;s
+          called <strong>Artigo</strong>.
         </p>
         <p>
-          It has a 'Ratio Export' tool that does exactly what you need, without
-          any coding or terminal commands:
+          It has a &apos;Ratio Export&apos; tool that does exactly what you
+          need, without any coding or terminal commands:
         </p>
         <ul className="list-disc pl-6 space-y-2">
           <li>You drop your batch of images into the app.</li>
@@ -169,15 +169,15 @@ const posts: Record<
           </li>
           <li>It automatically resizes and crops all of them at once.</li>
           <li>
-            It outputs everything neatly organized into ZIP folders so you don't
-            have a messy desktop.
+            It outputs everything neatly organized into ZIP folders so you
+            don&apos;t have a messy desktop.
           </li>
         </ul>
         <p>
-          It takes about 5 seconds instead of 45 minutes, and you don't need to
-          open Photopea or Photoshop at all. Best of all, it runs 100% offline
-          on your computer, so your files stay private and you don't have to
-          wait for uploads.
+          It takes about 5 seconds instead of 45 minutes, and you don&apos;t
+          need to open Photopea or Photoshop at all. Best of all, it runs 100%
+          offline on your computer, so your files stay private and you
+          don&apos;t have to wait for uploads.
         </p>
         <div className="mt-8 p-6 bg-indigo-50 rounded-xl border border-indigo-100">
           <h3 className="text-lg font-bold text-indigo-900 mb-2">
@@ -219,9 +219,9 @@ const posts: Record<
       "Understand which ratios your customers want and how to offer every option without manual resizing.",
     content: (
       <p>
-        This article is coming soon. We'll cover the most popular aspect ratios
-        for wall art, why they matter for your customers, and how to offer every
-        option effortlessly.
+        This article is coming soon. We&apos;ll cover the most popular aspect
+        ratios for wall art, why they matter for your customers, and how to
+        offer every option effortlessly.
       </p>
     ),
   },
@@ -246,8 +246,8 @@ const posts: Record<
       "Learn how to create professional bookmark sheets using grid composition tools.",
     content: (
       <p>
-        This article is coming soon. We'll walk through creating professional
-        bookmark sheets using grid composition tools.
+        This article is coming soon. We&apos;ll walk through creating
+        professional bookmark sheets using grid composition tools.
       </p>
     ),
   },

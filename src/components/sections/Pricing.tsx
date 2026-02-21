@@ -159,24 +159,25 @@ export function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative glass-strong rounded-2xl p-8 border-2 border-accent-indigo/30 shadow-xl"
+            className="relative glass-strong rounded-2xl p-8 border-2 border-accent-indigo/30 shadow-2xl transform-gpu hover:scale-[1.02] transition-transform duration-500"
           >
-            {/* Glow Effect */}
-            <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-accent-indigo/20 to-accent-blue/20 -z-10 blur-sm" />
+            {/* Animated Glow Effect */}
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-accent-indigo via-accent-purple to-accent-blue opacity-30 blur-xl -z-10 animate-gradient-shift bg-[length:200%_auto]" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 to-transparent opacity-50 pointer-events-none" />
 
-            <div className="mb-6 flex items-center justify-between">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-white bg-gradient-accent rounded-full px-3 py-1">
-                <Sparkles size={12} />
+            <div className="mb-6 flex items-center justify-between relative z-10">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-white bg-gradient-accent rounded-full px-3 py-1 shadow-md">
+                <Sparkles size={12} className="animate-pulse" />
                 {proTier.badge}
               </span>
               {proTier.discount && (
-                <span className="text-xs font-semibold uppercase tracking-wider text-text-primary bg-success/20 rounded-full px-3 py-1 border border-success/30">
+                <span className="text-xs font-semibold uppercase tracking-wider text-text-primary bg-success/20 rounded-full px-3 py-1 border border-success/30 animate-pulse">
                   {proTier.discount}
                 </span>
               )}
             </div>
 
-            <div className="mb-8">
+            <div className="mb-8 relative z-10">
               {proTier.originalPrice && (
                 <span className="text-2xl font-bold text-text-secondary/60 line-through mr-3">
                   {proTier.originalPrice}
@@ -190,7 +191,7 @@ export function Pricing() {
               </span>
             </div>
 
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 relative z-10">
               {proTier.features.map((f) => (
                 <li key={f.text} className="flex items-start gap-3">
                   <Check
@@ -206,13 +207,15 @@ export function Pricing() {
               ))}
             </ul>
 
-            <Button
-              onClick={handleCheckout}
-              className="w-full"
-              disabled={isCheckoutLoading}
-            >
-              {isCheckoutLoading ? "Starting checkout..." : proTier.cta}
-            </Button>
+            <div className="relative z-10">
+              <Button
+                onClick={handleCheckout}
+                className="w-full shadow-lg hover:shadow-xl"
+                disabled={isCheckoutLoading}
+              >
+                {isCheckoutLoading ? "Starting checkout..." : proTier.cta}
+              </Button>
+            </div>
           </motion.div>
         </div>
 

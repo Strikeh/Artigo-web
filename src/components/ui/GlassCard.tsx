@@ -25,15 +25,19 @@ export function GlassCard({
       whileHover={
         hover
           ? {
-              y: -4,
-              boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
-              transition: { duration: 0.2 },
+              y: -6,
+              scale: 1.02,
+              boxShadow: "0 24px 40px rgba(0,0,0,0.08)",
+              transition: { duration: 0.3, ease: "easeOut" },
             }
           : undefined
       }
-      className={`glass-strong rounded-card p-6 shadow-sm ${className}`}
+      className={`glass-strong rounded-card p-6 shadow-sm relative overflow-hidden group ${className}`}
     >
-      {children}
+      {hover && (
+        <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      )}
+      <div className="relative z-10">{children}</div>
     </motion.div>
   );
 }

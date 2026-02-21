@@ -63,12 +63,20 @@ const config: Config = {
           "0%": { width: "0%" },
           "100%": { width: "100%" },
         },
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
+        },
+        "border-spin": {
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "blob-float": "blob-float 20s ease-in-out infinite",
         "blob-float-delay": "blob-float 25s ease-in-out 2s infinite",
         "blob-float-slow": "blob-float 30s ease-in-out 4s infinite",
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+        shimmer: "shimmer 2s infinite",
+        "border-spin": "border-spin 4s linear infinite",
       },
     },
   },

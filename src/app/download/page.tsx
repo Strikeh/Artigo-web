@@ -12,15 +12,22 @@ import {
   ExternalLink,
   AlertTriangle,
   Shield,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { AnimatedBlobs } from "@/components/layout/AnimatedBlobs";
 
-type OS = "windows" | "mac" | "other";
+type OS = "windows" | "mac" | "linux" | "other";
 
-const DOWNLOAD_URL =
-  "https://github.com/Strikeh/Artigo-web/releases/latest/download/Artigo-Setup.exe";
-const VERSION = "0.9.0-beta.1";
+const VERSION = "1.2.0";
+const BASE_URL = `https://github.com/Strikeh/Artigo-web/releases/latest/download`;
+
+const DOWNLOAD_URLS = {
+  windows: `${BASE_URL}/Artigo-Setup-${VERSION}.exe`,
+  macArm: `${BASE_URL}/Artigo-${VERSION}-mac-arm64.dmg`,
+  macIntel: `${BASE_URL}/Artigo-${VERSION}-mac-x64.dmg`,
+  linux: `${BASE_URL}/Artigo-${VERSION}-amd64.deb`,
+};
 
 const systemReqs = [
   { icon: Monitor, label: "OS", value: "Windows 10+ (64-bit) or macOS 12+" },
@@ -36,6 +43,7 @@ export default function DownloadPage() {
     const ua = navigator.userAgent.toLowerCase();
     if (ua.includes("win")) setOs("windows");
     else if (ua.includes("mac")) setOs("mac");
+    else if (ua.includes("linux")) setOs("linux");
   }, []);
 
   return (
@@ -61,35 +69,102 @@ export default function DownloadPage() {
 
             {/* Primary Download Button */}
             <div className="mt-10 flex flex-col items-center gap-4">
-              {os === "windows" || os === "other" ? (
+              {os === "mac" ? (
+                <>
+                  <p className="text-sm text-text-secondary font-medium">
+                    Choose your Mac:
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a
+                      href={DOWNLOAD_URLS.macArm}
+                      className="btn-primary px-8 py-4 text-base inline-flex items-center gap-3"
+                    >
+                      <Apple size={20} />
+                      Download for Apple Silicon (M1/M2/M3)
+                    </a>
+                    <a
+                      href={DOWNLOAD_URLS.macIntel}
+                      className="btn-secondary px-8 py-4 text-base inline-flex items-center gap-3"
+                    >
+                      <Apple size={20} />
+                      Download for Intel Mac
+                    </a>
+                  </div>
+                  <p className="text-xs text-text-tertiary">
+                    Not sure? <strong>Apple menu → About This Mac</strong> —
+                    look for &quot;Apple M…&quot; (Silicon) or
+                    &quot;Intel&quot;.
+                  </p>
+                </>
+              ) : os === "linux" ? (
                 <>
                   <a
-                    href={DOWNLOAD_URL}
+                    href={DOWNLOAD_URLS.linux}
                     className="btn-primary px-10 py-5 text-lg inline-flex items-center gap-3"
                   >
                     <Download size={20} />
-                    Download for Windows (Beta)
+                    Download for Linux (.deb)
                   </a>
-                  <p className="text-sm text-text-tertiary flex items-center gap-1">
-                    <Apple size={14} />
-                    macOS version coming soon
+                  <p className="text-xs text-text-tertiary">
+                    Ubuntu / Debian-based distros
                   </p>
                 </>
               ) : (
                 <>
                   <a
-                    href={DOWNLOAD_URL}
+                    href={DOWNLOAD_URLS.windows}
                     className="btn-primary px-10 py-5 text-lg inline-flex items-center gap-3"
                   >
                     <Download size={20} />
-                    Download for Windows (Beta)
+                    Download for Windows
                   </a>
-                  <p className="text-sm text-text-tertiary flex items-center gap-1">
-                    <Apple size={14} />
-                    macOS version coming soon
-                  </p>
                 </>
               )}
+
+              {/* Other platforms */}
+              <details className="mt-2 text-center group">
+                <summary className="text-sm text-text-tertiary cursor-pointer inline-flex items-center gap-1 hover:text-text-secondary transition-colors list-none">
+                  Other platforms
+                  <ChevronDown
+                    size={14}
+                    className="group-open:rotate-180 transition-transform"
+                  />
+                </summary>
+                <div className="mt-3 flex flex-col sm:flex-row gap-2 justify-center">
+                  {os !== "windows" && (
+                    <a
+                      href={DOWNLOAD_URLS.windows}
+                      className="btn-ghost text-sm px-4 py-2 inline-flex items-center gap-2"
+                    >
+                      <Download size={14} /> Windows (.exe)
+                    </a>
+                  )}
+                  {os !== "mac" && (
+                    <>
+                      <a
+                        href={DOWNLOAD_URLS.macArm}
+                        className="btn-ghost text-sm px-4 py-2 inline-flex items-center gap-2"
+                      >
+                        <Apple size={14} /> macOS Apple Silicon
+                      </a>
+                      <a
+                        href={DOWNLOAD_URLS.macIntel}
+                        className="btn-ghost text-sm px-4 py-2 inline-flex items-center gap-2"
+                      >
+                        <Apple size={14} /> macOS Intel
+                      </a>
+                    </>
+                  )}
+                  {os !== "linux" && (
+                    <a
+                      href={DOWNLOAD_URLS.linux}
+                      className="btn-ghost text-sm px-4 py-2 inline-flex items-center gap-2"
+                    >
+                      <Download size={14} /> Linux (.deb)
+                    </a>
+                  )}
+                </div>
+              </details>
             </div>
 
             {/* Version */}
@@ -106,33 +181,57 @@ export default function DownloadPage() {
             </p>
           </motion.div>
 
-          {/* SmartScreen Warning Notice */}
+          {/* Platform-specific Warning Notice */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-12 max-w-2xl mx-auto"
           >
-            <div className="glass-strong rounded-2xl p-6 border border-yellow-400/30 bg-yellow-50/50">
-              <div className="flex items-start gap-4">
-                <AlertTriangle
-                  className="text-yellow-600 flex-shrink-0 mt-1"
-                  size={24}
-                />
-                <div className="text-left">
-                  <h3 className="text-base font-semibold text-text-primary mb-2">
-                    Windows SmartScreen Warning Expected
-                  </h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">
-                    This installer is <strong>not yet code-signed</strong>.
-                    You&#39;ll see a &quot;Windows protected your PC&quot;
-                    warning. This is normal for new apps. Click{" "}
-                    <strong>&quot;More info&quot;</strong> →{" "}
-                    <strong>&quot;Run anyway&quot;</strong> to install.
-                  </p>
+            {os === "mac" ? (
+              <div className="glass-strong rounded-2xl p-6 border border-blue-400/30 bg-blue-50/50">
+                <div className="flex items-start gap-4">
+                  <AlertTriangle
+                    className="text-blue-600 flex-shrink-0 mt-1"
+                    size={24}
+                  />
+                  <div className="text-left">
+                    <h3 className="text-base font-semibold text-text-primary mb-2">
+                      macOS Gatekeeper Warning Expected
+                    </h3>
+                    <p className="text-sm text-text-secondary leading-relaxed">
+                      Because Artigo is <strong>not yet notarized</strong> by
+                      Apple, macOS may block the app on first launch. To open
+                      it: go to{" "}
+                      <strong>System Settings → Privacy &amp; Security</strong>,
+                      scroll down, and click{" "}
+                      <strong>&quot;Open Anyway&quot;</strong> next to Artigo.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="glass-strong rounded-2xl p-6 border border-yellow-400/30 bg-yellow-50/50">
+                <div className="flex items-start gap-4">
+                  <AlertTriangle
+                    className="text-yellow-600 flex-shrink-0 mt-1"
+                    size={24}
+                  />
+                  <div className="text-left">
+                    <h3 className="text-base font-semibold text-text-primary mb-2">
+                      Windows SmartScreen Warning Expected
+                    </h3>
+                    <p className="text-sm text-text-secondary leading-relaxed">
+                      This installer is <strong>not yet code-signed</strong>.
+                      You&#39;ll see a &quot;Windows protected your PC&quot;
+                      warning. This is normal for new apps. Click{" "}
+                      <strong>&quot;More info&quot;</strong> →{" "}
+                      <strong>&quot;Run anyway&quot;</strong> to install.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </section>
@@ -176,33 +275,62 @@ export default function DownloadPage() {
           </h2>
 
           <ol className="space-y-6">
-            {[
-              {
-                step: "1",
-                title: "Download the installer",
-                desc: "Click the download button above to get Artigo-Setup.exe (approx. 100 MB).",
-              },
-              {
-                step: "2",
-                title: "Run the installer",
-                desc: "Double-click the downloaded .exe file to start the installation wizard.",
-              },
-              {
-                step: "3",
-                title: "Handle SmartScreen warning (if shown)",
-                desc: 'If you see "Windows protected your PC", click "More info" then "Run anyway". This is normal for new apps without code signing.',
-              },
-              {
-                step: "4",
-                title: "Complete installation",
-                desc: "Follow the installer steps. Artigo will be added to your Start Menu and desktop.",
-              },
-              {
-                step: "5",
-                title: "Launch and start creating",
-                desc: "Open Artigo, select your images, configure ratios, and generate your production files!",
-              },
-            ].map((item) => (
+            {(os === "mac"
+              ? [
+                  {
+                    step: "1",
+                    title: "Download the DMG",
+                    desc: 'Click the download button above. Choose "Apple Silicon" for M1/M2/M3 Macs or "Intel" for older Macs.',
+                  },
+                  {
+                    step: "2",
+                    title: "Open the DMG",
+                    desc: "Double-click the downloaded .dmg file. Drag Artigo to your Applications folder.",
+                  },
+                  {
+                    step: "3",
+                    title: "Handle Gatekeeper (if shown)",
+                    desc: 'If macOS says "Artigo cannot be opened", go to System Settings → Privacy & Security, scroll down, and click "Open Anyway".',
+                  },
+                  {
+                    step: "4",
+                    title: "Launch Artigo",
+                    desc: "Open Artigo from your Applications folder or Launchpad. You may be asked to confirm once more — click Open.",
+                  },
+                  {
+                    step: "5",
+                    title: "Start creating",
+                    desc: "Select your images, configure ratios, and generate your production files!",
+                  },
+                ]
+              : [
+                  {
+                    step: "1",
+                    title: "Download the installer",
+                    desc: "Click the download button above to get Artigo-Setup.exe (approx. 200 MB).",
+                  },
+                  {
+                    step: "2",
+                    title: "Run the installer",
+                    desc: "Double-click the downloaded .exe file to start the installation wizard.",
+                  },
+                  {
+                    step: "3",
+                    title: "Handle SmartScreen warning (if shown)",
+                    desc: 'If you see "Windows protected your PC", click "More info" then "Run anyway". This is normal for new apps without code signing.',
+                  },
+                  {
+                    step: "4",
+                    title: "Complete installation",
+                    desc: "Follow the installer steps. Artigo will be added to your Start Menu and desktop.",
+                  },
+                  {
+                    step: "5",
+                    title: "Launch and start creating",
+                    desc: "Open Artigo, select your images, configure ratios, and generate your production files!",
+                  },
+                ]
+            ).map((item) => (
               <motion.li
                 key={item.step}
                 initial={{ opacity: 0, x: -16 }}
@@ -238,20 +366,39 @@ export default function DownloadPage() {
                 size={24}
               />
               <div>
-                <h3 className="text-base font-semibold text-text-primary mb-2">
-                  Why the SmartScreen warning?
-                </h3>
-                <p className="text-sm text-text-secondary leading-relaxed mb-3">
-                  This warning appears because we haven&#39;t purchased a code
-                  signing certificate yet (€120/year).{" "}
-                  <strong>The app is completely safe</strong> — it runs entirely
-                  offline and doesn&#39;t collect any data.
-                </p>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  As more users install Artigo, Microsoft builds reputation and
-                  the warning will automatically reduce. We may add code signing
-                  or publish to Microsoft Store in future releases.
-                </p>
+                {os === "mac" ? (
+                  <>
+                    <h3 className="text-base font-semibold text-text-primary mb-2">
+                      Why the Gatekeeper warning?
+                    </h3>
+                    <p className="text-sm text-text-secondary leading-relaxed mb-3">
+                      Apple requires a paid Developer ID and notarization to
+                      suppress this warning.{" "}
+                      <strong>The app is completely safe</strong> — it runs
+                      entirely offline and doesn&#39;t collect any data.
+                    </p>
+                    <p className="text-sm text-text-secondary leading-relaxed">
+                      We plan to add notarization in a future release.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h3 className="text-base font-semibold text-text-primary mb-2">
+                      Why the SmartScreen warning?
+                    </h3>
+                    <p className="text-sm text-text-secondary leading-relaxed mb-3">
+                      This warning appears because we haven&#39;t purchased a
+                      code signing certificate yet (€120/year).{" "}
+                      <strong>The app is completely safe</strong> — it runs
+                      entirely offline and doesn&#39;t collect any data.
+                    </p>
+                    <p className="text-sm text-text-secondary leading-relaxed">
+                      As more users install Artigo, Microsoft builds reputation
+                      and the warning will automatically reduce. We may add code
+                      signing or publish to Microsoft Store in future releases.
+                    </p>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
